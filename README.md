@@ -1,91 +1,63 @@
-# 🧪 WWTP Phosphate Soft Sensor
+# WWTP Reactor Phosphate Soft Sensor
 
-**Interpretable Leakage-Robust Machine Learning for Sustainable Wastewater Treatment**
+This Streamlit app serves the leakage-aware LightGBM soft sensor developed for reactor phosphate prediction in a full-scale nutrient-removal wastewater treatment plant.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]()
+## What the app predicts
 
-## Overview
+- Target: reactor `T1_PO4`
+- Unit: `mg L-1`
+- Model: LightGBM
+- Inputs: hourly SCADA operating signals plus recent 1-3 h history
 
-An interactive web application for predicting reactor phosphate (PO4-P) in wastewater treatment plants using 12 machine learning models with leakage-robust validation.
+The app does **not** predict final-effluent total phosphorus, compliance status, greenhouse-gas emissions, or causal effects of changing metal dose.
 
-### Key Features
+## Model performance
 
-- 📊 **Dashboard** — Key metrics, time series, model comparison
-- 🔬 **Data Explorer** — Interactive data exploration with correlations and temporal patterns
-- 🏆 **Model Benchmark** — 12-model comparison under chronological validation
-- 🧠 **Interpretability** — SHAP analysis, feature importance, partial dependence plots
-- 🔮 **Prediction** — Real-time PO4-P prediction from process inputs
+The bundled model follows the paper workflow: hourly aggregation, chronological 80/20 validation, and no short target-lag feature.
 
-### Dataset
+Expected temporal test performance:
 
-- **Source**: Agtrup (BlueKolding) WWTP, Denmark
-- **Records**: 525,600 (2-min SCADA) → 17,520 (hourly)
-- **Period**: August 2021 – July 2023
-- **Target**: Reactor phosphate (T1_PO4)
-- **DOI**: [10.17632/34rpmsxc4z.2](https://doi.org/10.17632/34rpmsxc4z.2)
+- R2: approximately 0.698
+- RMSE: approximately 0.268 mg L-1
+- MAE: approximately 0.168 mg L-1
 
-### Models
+## Files
 
-| Family | Models | Best R² |
-|--------|--------|---------|
-| Linear | Linear, Ridge, Lasso, ElasticNet | 0.691 (Lasso) |
-| Tree | RF, ExtraTrees, GB, HistGB, XGBoost, LightGBM | 0.698 (LightGBM) |
-| Neural | MLP | 0.626 |
-| Instance | KNN | 0.578 |
+```text
+app.py
+model/model_bundle.joblib
+model/model_metadata.json
+data/example_hourly_sequence.csv
+data/single_prediction_template.csv
+data/example_feature_ready.csv
+scripts/train_export_model.py
+requirements.txt
+runtime.txt
+.streamlit/config.toml
+```
 
-### Leakage Prevention
-
-- ✅ No target lag features (PO4-P history never used as input)
-- ✅ Strictly chronological 80/20 split (past → future)
-- ✅ Random split contrast shows ~0.10-0.16 inflation
-- ✅ Persistence artifact (target lag → R²≈0.98) exposed and excluded
-
-## Deployment
-
-### Local
+## Local run
 
 ```bash
 pip install -r requirements.txt
-python train_model.py    # Train models (~2 min)
-streamlit run app.py     # Launch web app
+streamlit run app.py
 ```
 
-### Streamlit Cloud
+## Re-training the model
 
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repo
-4. Set main file: `app.py`
-5. Add the CSV file to the repo or use the training script
+Place the original Agtrup CSV in the parent project folder or pass it explicitly:
 
-## Project Structure
-
-```
-wwtp-phosphate-soft-sensor/
-├── app.py                  # Streamlit web application
-├── train_model.py          # Model training script
-├── requirements.txt        # Python dependencies
-├── .streamlit/
-│   └── config.toml         # Streamlit theme config
-├── artifacts/              # Trained models & data (generated)
-│   ├── models.pkl
-│   ├── results.pkl
-│   ├── shap_data.pkl
-│   ├── metrics.csv
-│   └── feature_info.json
-└── IOPTQCfFiFoNPo_2min_Agtrup_Aug_2023.csv  # Source data
+```bash
+python scripts/train_export_model.py --csv ../IOPTQCfFiFoNPo_2min_Agtrup_Aug_2023.csv --out .
 ```
 
-## Interpretability Notes
+## Streamlit Community Cloud deployment
 
-⚠️ Metal dosing variables (IN_METAL_Q, METAL_Q) show positive association with phosphate. This reflects **operator control response** — operators increase dosing when phosphate is high — **not** a causal dose-response relationship. All interpretability results are **associational**.
+Use these settings:
 
-## Citation
+- Repository: this GitHub repository
+- Branch: `main`
+- Main file path: `app.py`
+- Python version: `3.12`
 
-If you use this application or dataset, please cite:
-
-> Hansen, K.B., et al. (2023). Wastewater Treatment Plant Data for Nutrient Removal System, Version 2. Mendeley Data. DOI: 10.17632/34rpmsxc4z.2
-
-## License
-
-For research and educational purposes.
+If Streamlit Cloud uses a newer Python version, set Python 3.12 manually in **Settings -> Advanced settings** and redeploy.

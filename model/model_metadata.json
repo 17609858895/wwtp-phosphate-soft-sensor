@@ -1,0 +1,426 @@
+{
+  "model_name": "LightGBM",
+  "target": "T1_PO4",
+  "target_label": "Reactor phosphate, PO4-P",
+  "target_unit": "mg L-1",
+  "raw_columns": [
+    "IN_METAL_Q",
+    "T1_O2",
+    "METAL_Q",
+    "TEMPERATURE",
+    "IN_Q",
+    "MAX_CF",
+    "PROCESSPHASE_INLET",
+    "PROCESSPHASE_OUTLET",
+    "T1_NH4"
+  ],
+  "feature_columns": [
+    "IN_METAL_Q",
+    "T1_O2",
+    "METAL_Q",
+    "TEMPERATURE",
+    "IN_Q",
+    "MAX_CF",
+    "PROCESSPHASE_INLET",
+    "PROCESSPHASE_OUTLET",
+    "T1_NH4",
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "IN_METAL_Q_lag1h",
+    "IN_METAL_Q_lag2h",
+    "IN_METAL_Q_lag3h",
+    "T1_O2_lag1h",
+    "T1_O2_lag2h",
+    "T1_O2_lag3h",
+    "METAL_Q_lag1h",
+    "METAL_Q_lag2h",
+    "METAL_Q_lag3h",
+    "TEMPERATURE_lag1h",
+    "TEMPERATURE_lag2h",
+    "TEMPERATURE_lag3h",
+    "IN_Q_lag1h",
+    "IN_Q_lag2h",
+    "IN_Q_lag3h",
+    "MAX_CF_lag1h",
+    "MAX_CF_lag2h",
+    "MAX_CF_lag3h",
+    "PROCESSPHASE_INLET_lag1h",
+    "PROCESSPHASE_INLET_lag2h",
+    "PROCESSPHASE_INLET_lag3h",
+    "PROCESSPHASE_OUTLET_lag1h",
+    "PROCESSPHASE_OUTLET_lag2h",
+    "PROCESSPHASE_OUTLET_lag3h",
+    "T1_NH4_lag1h",
+    "T1_NH4_lag2h",
+    "T1_NH4_lag3h",
+    "IN_METAL_Q_roll3h_mean",
+    "IN_METAL_Q_roll3h_std",
+    "T1_O2_roll3h_mean",
+    "T1_O2_roll3h_std",
+    "METAL_Q_roll3h_mean",
+    "METAL_Q_roll3h_std",
+    "TEMPERATURE_roll3h_mean",
+    "TEMPERATURE_roll3h_std",
+    "IN_Q_roll3h_mean",
+    "IN_Q_roll3h_std",
+    "MAX_CF_roll3h_mean",
+    "MAX_CF_roll3h_std",
+    "PROCESSPHASE_INLET_roll3h_mean",
+    "PROCESSPHASE_INLET_roll3h_std",
+    "PROCESSPHASE_OUTLET_roll3h_mean",
+    "PROCESSPHASE_OUTLET_roll3h_std",
+    "T1_NH4_roll3h_mean",
+    "T1_NH4_roll3h_std"
+  ],
+  "time_columns": [
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos"
+  ],
+  "train_feature_quantiles": {
+    "IN_METAL_Q": {
+      "p01": 0.0,
+      "p99": 181.19268266666666
+    },
+    "T1_O2": {
+      "p01": 0.0,
+      "p99": 2.105574666666666
+    },
+    "METAL_Q": {
+      "p01": 0.007,
+      "p99": 40.67191199999997
+    },
+    "TEMPERATURE": {
+      "p01": 6.59156,
+      "p99": 19.070591999999998
+    },
+    "IN_Q": {
+      "p01": 396.50167066666666,
+      "p99": 2553.828563999997
+    },
+    "MAX_CF": {
+      "p01": 30.97422933333333,
+      "p99": 100.0
+    },
+    "PROCESSPHASE_INLET": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_OUTLET": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "T1_NH4": {
+      "p01": 0.031716,
+      "p99": 6.624557333333327
+    },
+    "hour_sin": {
+      "p01": -1.0,
+      "p99": 1.0
+    },
+    "hour_cos": {
+      "p01": -1.0,
+      "p99": 1.0
+    },
+    "month_sin": {
+      "p01": -1.0,
+      "p99": 1.0
+    },
+    "month_cos": {
+      "p01": -1.0,
+      "p99": 1.0
+    },
+    "IN_METAL_Q_lag1h": {
+      "p01": 0.0,
+      "p99": 181.19268266666666
+    },
+    "IN_METAL_Q_lag2h": {
+      "p01": 0.0,
+      "p99": 181.19268266666666
+    },
+    "IN_METAL_Q_lag3h": {
+      "p01": 0.0,
+      "p99": 181.19268266666666
+    },
+    "T1_O2_lag1h": {
+      "p01": 0.0,
+      "p99": 2.105574666666666
+    },
+    "T1_O2_lag2h": {
+      "p01": 0.0,
+      "p99": 2.105574666666666
+    },
+    "T1_O2_lag3h": {
+      "p01": 0.0,
+      "p99": 2.105574666666666
+    },
+    "METAL_Q_lag1h": {
+      "p01": 0.007,
+      "p99": 40.67191199999997
+    },
+    "METAL_Q_lag2h": {
+      "p01": 0.007,
+      "p99": 40.67191199999997
+    },
+    "METAL_Q_lag3h": {
+      "p01": 0.007,
+      "p99": 40.67191199999997
+    },
+    "TEMPERATURE_lag1h": {
+      "p01": 6.59156,
+      "p99": 19.070591999999998
+    },
+    "TEMPERATURE_lag2h": {
+      "p01": 6.59156,
+      "p99": 19.070591999999998
+    },
+    "TEMPERATURE_lag3h": {
+      "p01": 6.59156,
+      "p99": 19.070591999999998
+    },
+    "IN_Q_lag1h": {
+      "p01": 396.50167066666666,
+      "p99": 2553.828563999997
+    },
+    "IN_Q_lag2h": {
+      "p01": 396.50167066666666,
+      "p99": 2553.828563999997
+    },
+    "IN_Q_lag3h": {
+      "p01": 396.50167066666666,
+      "p99": 2553.828563999997
+    },
+    "MAX_CF_lag1h": {
+      "p01": 30.97422933333333,
+      "p99": 100.0
+    },
+    "MAX_CF_lag2h": {
+      "p01": 30.97422933333333,
+      "p99": 100.0
+    },
+    "MAX_CF_lag3h": {
+      "p01": 30.97422933333333,
+      "p99": 100.0
+    },
+    "PROCESSPHASE_INLET_lag1h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_INLET_lag2h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_INLET_lag3h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_OUTLET_lag1h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_OUTLET_lag2h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "PROCESSPHASE_OUTLET_lag3h": {
+      "p01": 1.0,
+      "p99": 2.0
+    },
+    "T1_NH4_lag1h": {
+      "p01": 0.031716,
+      "p99": 6.624557333333327
+    },
+    "T1_NH4_lag2h": {
+      "p01": 0.031716,
+      "p99": 6.624557333333327
+    },
+    "T1_NH4_lag3h": {
+      "p01": 0.031716,
+      "p99": 6.624557333333327
+    },
+    "IN_METAL_Q_roll3h_mean": {
+      "p01": 0.0003999999999609201,
+      "p99": 179.98084533333324
+    },
+    "IN_METAL_Q_roll3h_std": {
+      "p01": 0.0,
+      "p99": 41.582718560690815
+    },
+    "T1_O2_roll3h_mean": {
+      "p01": 0.0,
+      "p99": 1.6538173333333326
+    },
+    "T1_O2_roll3h_std": {
+      "p01": 0.0,
+      "p99": 1.1311214096343436
+    },
+    "METAL_Q_roll3h_mean": {
+      "p01": 0.007,
+      "p99": 37.205019555555516
+    },
+    "METAL_Q_roll3h_std": {
+      "p01": 0.0,
+      "p99": 16.935313608460415
+    },
+    "TEMPERATURE_roll3h_mean": {
+      "p01": 6.586915111111119,
+      "p99": 19.066177333333336
+    },
+    "TEMPERATURE_roll3h_std": {
+      "p01": 0.0018215535039867979,
+      "p99": 0.15235211364889759
+    },
+    "IN_Q_roll3h_mean": {
+      "p01": 433.430550666667,
+      "p99": 2524.426849333332
+    },
+    "IN_Q_roll3h_std": {
+      "p01": 4.951315453926035,
+      "p99": 470.13322398235056
+    },
+    "MAX_CF_roll3h_mean": {
+      "p01": 31.4980288888889,
+      "p99": 100.0
+    },
+    "MAX_CF_roll3h_std": {
+      "p01": 0.0,
+      "p99": 25.454313926743282
+    },
+    "PROCESSPHASE_INLET_roll3h_mean": {
+      "p01": 1.300000000000001,
+      "p99": 1.800000000000001
+    },
+    "PROCESSPHASE_INLET_roll3h_std": {
+      "p01": 0.0,
+      "p99": 0.5315943872846967
+    },
+    "PROCESSPHASE_OUTLET_roll3h_mean": {
+      "p01": 1.0888888888888888,
+      "p99": 1.7777777777777777
+    },
+    "PROCESSPHASE_OUTLET_roll3h_std": {
+      "p01": 0.0,
+      "p99": 0.5315943872846999
+    },
+    "T1_NH4_roll3h_mean": {
+      "p01": 0.06057555555555782,
+      "p99": 6.11949777777778
+    },
+    "T1_NH4_roll3h_std": {
+      "p01": 0.012329409328456456,
+      "p99": 1.8926912765918642
+    }
+  },
+  "input_summary": {
+    "IN_METAL_Q": {
+      "min": 0.0,
+      "p01": 0.0,
+      "p05": 0.018,
+      "median": 28.610750000000003,
+      "p95": 148.29897166666663,
+      "p99": 179.17192833333345,
+      "max": 327.8831333333334
+    },
+    "T1_O2": {
+      "min": 0.0,
+      "p01": 0.0,
+      "p05": 0.0,
+      "median": 0.42138333333333333,
+      "p95": 1.382148333333333,
+      "p99": 2.045284000000017,
+      "max": 6.337066666666667
+    },
+    "METAL_Q": {
+      "min": 0.006766666666666667,
+      "p01": 0.007,
+      "p05": 0.007,
+      "median": 1.05975,
+      "p95": 22.073623333333334,
+      "p99": 40.60301733333334,
+      "max": 100.07953333333333
+    },
+    "TEMPERATURE": {
+      "min": 6.173466666666667,
+      "p01": 6.652353,
+      "p05": 7.864283333333334,
+      "median": 12.798283333333334,
+      "p95": 17.95954833333333,
+      "p99": 18.996232000000003,
+      "max": 19.4676
+    },
+    "IN_Q": {
+      "min": 111.04826666666666,
+      "p01": 320.98969300000005,
+      "p05": 458.2173466666667,
+      "median": 850.1573166666667,
+      "p95": 1883.016253333333,
+      "p99": 2507.499909333334,
+      "max": 3870.885
+    },
+    "MAX_CF": {
+      "min": 25.166999999999998,
+      "p01": 30.333000000000002,
+      "p05": 33.67713166666667,
+      "median": 76.97713333333334,
+      "p95": 100.0,
+      "p99": 100.0,
+      "max": 100.0
+    },
+    "PROCESSPHASE_INLET": {
+      "min": 1.0,
+      "p01": 1.0,
+      "p05": 1.0666666666666667,
+      "median": 1.5,
+      "p95": 1.9666666666666666,
+      "p99": 2.0,
+      "max": 2.0
+    },
+    "PROCESSPHASE_OUTLET": {
+      "min": 1.0,
+      "p01": 1.0,
+      "p05": 1.0333333333333334,
+      "median": 1.5,
+      "p95": 1.9666666666666666,
+      "p99": 2.0,
+      "max": 2.0
+    },
+    "T1_NH4": {
+      "min": 0.009633333333333334,
+      "p01": 0.038122,
+      "p05": 0.158,
+      "median": 1.0991666666666666,
+      "p95": 4.266444999999999,
+      "p99": 6.419673333333351,
+      "max": 15.429833333333333
+    }
+  },
+  "training_window": {
+    "start": "2021-08-01 03:00:00+00:00",
+    "end": "2023-03-07 23:00:00+00:00",
+    "n_rows": 14013
+  },
+  "test_window": {
+    "start": "2023-03-08 00:00:00+00:00",
+    "end": "2023-07-31 23:00:00+00:00",
+    "n_rows": 3504
+  },
+  "train_metrics": {
+    "r2": 0.8501698450643382,
+    "rmse": 0.22888973295481704,
+    "mae": 0.1609060598859722
+  },
+  "test_metrics": {
+    "r2": 0.6984128212257013,
+    "rmse": 0.2678731600752866,
+    "mae": 0.1681681344866127
+  },
+  "caveats": [
+    "This model predicts in-reactor T1_PO4, not final-effluent total phosphorus.",
+    "Metal dosing is treated as an operator-response signal, not as a causal dosing intervention.",
+    "Reliable use requires hourly inputs and recent 1-3 h operating history.",
+    "Predictions outside the training feature range should be treated as extrapolations."
+  ]
+}
