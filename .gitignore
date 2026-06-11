@@ -9,3 +9,4 @@ data/raw/
 *.log
 .streamlit_pid.txt
 streamlit_preview.png
+ui_check_*.png

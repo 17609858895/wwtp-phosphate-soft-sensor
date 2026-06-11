@@ -1,11 +1,11 @@
-# WWTP Reactor Phosphate Soft Sensor
+# WWTP Reactor PO₄-P Soft Sensor
 
 This Streamlit app serves the leakage-aware LightGBM soft sensor developed for reactor phosphate prediction in a full-scale nutrient-removal wastewater treatment plant.
 
 ## What the app predicts
 
-- Target: reactor `T1_PO4`
-- Unit: `mg L-1`
+- Target: reactor `T1_PO4` displayed as reactor PO₄-P
+- Unit: mg L⁻¹
 - Model: LightGBM
 - Inputs: hourly SCADA operating signals plus recent 1-3 h history
 
@@ -17,9 +17,9 @@ The bundled model follows the paper workflow: hourly aggregation, chronological 
 
 Expected temporal test performance:
 
-- R2: approximately 0.698
-- RMSE: approximately 0.268 mg L-1
-- MAE: approximately 0.168 mg L-1
+- R²: approximately 0.698
+- RMSE: approximately 0.268 mg L⁻¹
+- MAE: approximately 0.168 mg L⁻¹
 
 ## Files
 
